@@ -14,4 +14,8 @@
 pip install -r requirements.txt
 ---
 
-### Configure our gitCLI with our github repository
+### Configure our gitCLI with our github repository 
+---
+commit and push our code to the repo
+---
+
