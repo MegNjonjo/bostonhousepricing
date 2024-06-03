@@ -17,10 +17,21 @@ def predict():
     data=request.json['data']
     print(data)
     print(np.array(list(data.values())).reshape(1,-1))
-    new_data = scalar.tranform(np.array(list(data.values())).reshape(1,-1))
+    new_data = scalar.transform(np.array(list(data.values())).reshape(1,-1))
     output = model.predict(new_data)
     print(output[0])
     return jsonify(output[0])
+
+@app.route("/prediction",methods=['POST'])
+def prediction():
+    data=[float(x)for x in request.form.values()]
+    final_input = scalar.transform(np.array(data).reshape(1,-1))
+    print(final_input)
+    output = model.predict(final_input)[0]
+    return render_template("home.html",prediction_text="The predicted house price is {}".format(output))
+
+
+
 
 if __name__=="__main__":
     app.run(debug=True)
